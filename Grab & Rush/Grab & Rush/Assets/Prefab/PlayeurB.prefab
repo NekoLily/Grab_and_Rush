@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50355697404546588}
   - component: {fileID: 114500859015671584}
   m_Layer: 0
-  m_Name: Play
+  m_Name: PlayeurB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1497335733026614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6185994, y: -2.0603015, z: 0}
+  m_LocalPosition: {x: -6.9806232, y: -2.5544367, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,9 +75,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024995565, y: 0.024995804}
+  m_Offset: {x: 0.0017092228, y: -0.0017089844}
   serializedVersion: 2
-  m_Radius: 0.42173028
+  m_Radius: 0.43953347
 --- !u!114 &114500859015671584
 MonoBehaviour:
   m_ObjectHideFlags: 1
