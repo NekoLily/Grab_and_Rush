@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212374509303367900}
   - component: {fileID: 61099014851609770}
   m_Layer: 0
-  m_Name: PlateformA
+  m_Name: PlatformA
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.91, y: 1.97}
+    oldSize: {x: 2.7, y: 0.55}
     newSize: {x: 3.91, y: 1.97}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
