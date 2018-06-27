@@ -61,8 +61,21 @@ public class GameManager : MonoBehaviour
                     else
                         ScoreP1 += 1;
                 }
+                if (ScoreP1 == ScoreLimit || ScoreP2 ==ScoreLimit)
+                {
+                    GameState = Enum.GameState.Victory;
+                }
+                else if (P1Run)
+                {
+                    GameState = Enum.GameState.GamePhaseP2Run;
+                }
+                else if (P1Run == false)
+                {
+                    GameState = Enum.GameState.GamePhaseP1Run;
+                }
                 break;
             case Enum.GameState.Victory://Fin de la partie, afficher le score et recommencer/arreter de jouer
+                
                 break;
             case Enum.GameState.Credits: //Generique
                 break;
