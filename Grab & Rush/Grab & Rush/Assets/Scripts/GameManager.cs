@@ -1,34 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour {
 
     public Enum.GameState GameState;
     public int Score, ScoreLimit; //Variable du score, limite du score fixée par les joueurs
-
-
-
-
-
-
-
-
-
     // Use this for initialization
     private void Awake()
     {
         GameState = Enum.GameState.MainMenu; //Lance le menu principal quand on allume le jeu
     }
     void Start () {
-
-
-
-    }
+        
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -54,4 +40,21 @@ public class GameManager : MonoBehaviour {
                 break;
         }
 	}
+
+    public void LoadScene(int ID_Scene)
+    {
+        switch(ID_Scene)
+        {
+            case 0:
+                SceneManager.LoadScene("MenuPrincipale");
+                break;
+
+            case 1:
+                SceneManager.LoadScene("Jeu");
+                break;
+            case 2:
+                SceneManager.LoadScene("Crédits");
+                break;
+        }
+    }
 }
