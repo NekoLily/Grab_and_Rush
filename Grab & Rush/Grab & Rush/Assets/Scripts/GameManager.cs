@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Enum.GameState GameState;
     public static GameManager current;
     public int Score, ScoreLimit; //Variable du score, limite du score fixée par les joueurs
-    public int[,] Data = new int[1,1];
+    public float[,] Data = new float[2, 2] { { 1, 1 }, { 1, 1 } };
     // Use this for initialization
     private void Awake()
     {
