@@ -5,10 +5,12 @@ using UnityEngine;
 public class OnTriggerGetPlayer : MonoBehaviour {
 
     public GameObject Player;
-    private void OnTriggerEnter(Collider PlayerCollider)
+    private void OnTriggerEnter2D(Collider2D PlayerCollider)
     {
+        
         Player = PlayerCollider.gameObject;
         Player.GetComponent<PlayerController>().enabled = false;
+        Player.GetComponent<Rigidbody2D>().simulated = false;
     }
 
     private void Update()

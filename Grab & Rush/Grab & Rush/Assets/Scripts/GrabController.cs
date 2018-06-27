@@ -68,7 +68,7 @@ public class GrabController : MonoBehaviour {
 
     void Move(float x, bool down, bool up)
     {
-        Debug.Log(Mathf.Abs(x));
+     
         if (down && isup)
         {
             StartCoroutine(GoDown());
@@ -95,7 +95,7 @@ public class GrabController : MonoBehaviour {
         if(Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player == null)
         {
             Trigger.enabled = true;
-            while (Grabber.GetComponent<DistanceJoint2D>().distance <= GrabberYInit + 4)
+            while (Grabber.GetComponent<DistanceJoint2D>().distance <= GrabberYInit + 2.5f)
             {
 
                 Grabber.GetComponent<DistanceJoint2D>().distance += 0.02f;
@@ -111,6 +111,7 @@ public class GrabController : MonoBehaviour {
         else
         {
             Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player.GetComponent<PlayerController>().enabled = true;
+            Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player.GetComponent<Rigidbody2D>().simulated = true;
             Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player = null;
 
         }
