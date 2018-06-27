@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 
     public float maxSpeed = 50f;
-    public float jumpPower = 180f;
+    public float jumpPower = 180f;
+
     public float Offset_Y;
     private int Jump_Number = 2;
 
@@ -43,5 +44,6 @@ public class PlayerController : MonoBehaviour
             if (Jump_Number > 0)
                 GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
         }
-    }
+    }
+
 }

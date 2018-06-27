@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f9ce0796c6d8acc46bb5afa458a5ef64
+timeCreated: 1530103031
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: 'Candy Shop Black Personal Use  '
+  fontNames:
+  - 'Candy Shop Black Personal Use  '
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
