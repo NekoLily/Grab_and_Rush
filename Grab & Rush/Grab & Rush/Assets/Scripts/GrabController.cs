@@ -5,6 +5,7 @@ using UnityEngine;
 public class GrabController : MonoBehaviour {
 
     public GameObject Cabin, Wire, Grabber; //Les différentes parties de la machine
+    public CircleCollider2D Trigger;
     public GameManager GM; //GameManager
     public float x, y, GrabberYInit; //input x, input y, Distance initiale du DistanceJoint2D
     public bool down, up, isdown, isup; //Baisse, Monte, Est en bas, Est en haut
@@ -79,7 +80,7 @@ public class GrabController : MonoBehaviour {
         else if (Mathf.Abs(x) > 0.7)
         {
             Debug.Log("Should Move");
-            CabinRigidBody.AddForce(new Vector2(x * 10, 0f));
+            CabinRigidBody.AddForce(new Vector2(x * 30, 0f));
         }
         else
         {
@@ -91,17 +92,28 @@ public class GrabController : MonoBehaviour {
 
     IEnumerator GoDown()
     {
-        
-        while(Grabber.GetComponent<DistanceJoint2D>().distance <= GrabberYInit + 4)
+        if(Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player == null)
         {
-           
-            Grabber.GetComponent<DistanceJoint2D>().distance += 0.02f;
-            yield return new WaitForSeconds(0.01f);
-            
+            Trigger.enabled = true;
+            while (Grabber.GetComponent<DistanceJoint2D>().distance <= GrabberYInit + 4)
+            {
+
+                Grabber.GetComponent<DistanceJoint2D>().distance += 0.02f;
+                yield return new WaitForSeconds(0.01f);
+
+            }
+            isdown = true;
+            isup = false;
+            yield return new WaitForSeconds(1f);
+            Trigger.enabled = false;
+
         }
-        isdown = true;
-        isup = false;
-        
+        else
+        {
+            Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player.GetComponent<PlayerController>().enabled = true;
+            Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player = null;
+
+        }
         //StopCoroutine(GoDown());
     }
 

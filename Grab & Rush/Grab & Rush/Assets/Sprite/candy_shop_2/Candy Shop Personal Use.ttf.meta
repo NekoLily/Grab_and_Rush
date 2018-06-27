@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 068cd38227851e44f9b2c82bf2a8ea17
+timeCreated: 1530103031
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Candy Shop Personal Use
+  fontNames:
+  - Candy Shop Personal Use
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
