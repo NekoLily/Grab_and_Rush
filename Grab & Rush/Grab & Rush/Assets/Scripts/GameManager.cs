@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public Enum.GameState GameState;
+    public static GameManager current;
     public int Score, ScoreLimit; //Variable du score, limite du score fixée par les joueurs
     // Use this for initialization
     private void Awake()
     {
+        if (current == null)
+        {
+            current = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (current != this)
+            Destroy(gameObject);
         GameState = Enum.GameState.MainMenu; //Lance le menu principal quand on allume le jeu
     }
-    void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         switch (GameState) //Permet de gérer le jeu selon son état GameState
         {
             case Enum.GameState.MainMenu: //Menu principal
@@ -39,11 +50,11 @@ public class GameManager : MonoBehaviour {
             default:
                 break;
         }
-	}
+    }
 
     public void LoadScene(int ID_Scene)
     {
-        switch(ID_Scene)
+        switch (ID_Scene)
         {
             case 0:
                 SceneManager.LoadScene("MenuPrincipale");

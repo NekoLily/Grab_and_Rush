@@ -2,29 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public float maxSpeed = 50f;
-    public float jumpPower = 180f;
-    private CapsuleCollider2D m_capsulecollier2D;
-    private Rigidbody2D m_rigidbody2D;
-    private int Jump_Number = 0;
+    public float jumpPower = 180f;
+    public float Offset_Y;
+    private int Jump_Number = 2;
 
-    // Use this for initialization
-    void Awake()
-    {
-        m_capsulecollier2D = GetComponent<CapsuleCollider2D>();
-        m_rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-
-    void Start ()
-    {
-	    	
-	}
-
-    // Update is called once per frame
     void Update()
     {
+        RaycastHit2D Hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + Offset_Y), transform.position + (Vector3.down * 0.75f));
+        Debug.DrawLine(new Vector2(transform.position.x, transform.position.y + Offset_Y), transform.position + (Vector3.down * 0.75f), Color.green);// TMP
+        if (Hit.collider != null)
+        {
+            Debug.Log(Hit.collider.name);
+            if (Hit.collider.tag == "Ground")
+            {
+                Jump_Number = 2;
+            }
+        }
         float x = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
         Move(x, jump);
@@ -38,13 +35,13 @@ public class PlayerController : MonoBehaviour {
             transform.rotation = Quaternion.Euler(rot.x, Mathf.Sign(move) == 1 ? 0 : 180, rot.z);
         }
 
-        m_rigidbody2D.velocity = new Vector2(move * maxSpeed, m_rigidbody2D.velocity.y);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
         if (jump)
         {
             Jump_Number--;
             if (Jump_Number > 0)
-                m_rigidbody2D.AddForce(Vector2.up * jumpPower);
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
         }
     }
 }
