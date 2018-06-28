@@ -72,6 +72,7 @@ public class GrabController : MonoBehaviour {
     {
         if (down && isup && CRGoDownRunning == false)
         {
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
             StopCoroutine(GoDown());
             StopCoroutine(GoUp());
             isup = false;
@@ -81,6 +82,7 @@ public class GrabController : MonoBehaviour {
         }
         else if (up && isdown)
         {
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
             StopCoroutine(GoUp());
             StopCoroutine(GoDown());
             isdown = false;
@@ -107,6 +109,7 @@ public class GrabController : MonoBehaviour {
         if(Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player == null)
         {
             Trigger.enabled = true;
+            
             while (Grabber.GetComponent<DistanceJoint2D>().distance <= GrabberYInit + 2.5f)
             {
 
@@ -131,6 +134,7 @@ public class GrabController : MonoBehaviour {
             Debug.Log("isupCR:" + isup);
 
         }
+        GetComponent<AudioSource>().Stop();
         //StopCoroutine(GoDown());
         CRGoDownRunning = false;
     }
@@ -144,7 +148,7 @@ public class GrabController : MonoBehaviour {
             yield return new WaitForSeconds(0.01f);
         }
         isup = true;
-        
+        GetComponent<AudioSource>().Stop();
         //StopCoroutine(GoUp());
     }
 }

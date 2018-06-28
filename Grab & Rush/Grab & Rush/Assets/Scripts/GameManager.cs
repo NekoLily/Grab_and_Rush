@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool RunnerWin = true;
     public bool P1Run = false;
     public bool ScoreAdded = false;
+    public Text ScoreText;
 
     private Enum.GameState TMP;
     private GameObject Player;
@@ -79,11 +81,15 @@ public class GameManager : MonoBehaviour
             case Enum.GameState.BallSelect: //Selection de la boule/Skin, score max
                 break;
             case Enum.GameState.GamePhaseP1Run: //Phase de jeu, le joueur 1 court
+                ScoreText = GameObject.Find("Score").GetComponent<Text>();
+                ScoreText.text = ScoreP1.ToString() + " - " + ScoreP2.ToString();
                 P1Run = true;
                 ScoreAdded = false;
 
                 break;
             case Enum.GameState.GamePhaseP2Run: //Phase de jeu, le joueur 2 court
+                ScoreText = GameObject.Find("Score").GetComponent<Text>();
+                ScoreText.text = ScoreP1.ToString() + " - " + ScoreP2.ToString();
                 P1Run = false;
                 ScoreAdded = false;
 
@@ -169,16 +175,18 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnPlayer()
     {
+
+       
         yield return new WaitForSeconds(0.5f);
+
+        foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Ground"))
+        {
+            Destroy(GO);
+
+        }
         if (P1Run == false)
         {
-            foreach(GameObject GO in GameObject.FindGameObjectsWithTag("Ground"))
-            {
-                if(GO.GetComponent<SpriteRenderer>().isVisible == true)
-                {
-                    Destroy(GO);
-                }
-            }
+            
             CHENILLE = Instantiate(Resources.Load<GameObject>("Prefab/LACHENILLE"));
             Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
             Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[1, 1]));
@@ -191,13 +199,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Ground"))
-            {
-                if (GO.GetComponent<SpriteRenderer>().isVisible == true)
-                {
-                    Destroy(GO);
-                }
-            }
+            
             CHENILLE = Instantiate(Resources.Load<GameObject>("Prefab/LACHENILLE"));
             Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[1, 0]));
             Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[0, 1]));
@@ -208,7 +210,7 @@ public class GameManager : MonoBehaviour
             TMP.transform.position = GameObject.Find("Playerpos").transform.position;
             GameState = Enum.GameState.GamePhaseP2Run;
         }
-
+        GameObject.Find("Spawn").GetComponent<PlatformSpawn>().Spawn();
     }
 
     public void Resume()

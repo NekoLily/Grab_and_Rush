@@ -68,7 +68,11 @@ public class PlayerController : MonoBehaviour
         {
             Jump_Number--;
             if (Jump_Number > 0)
+            {
                 GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower);
+                GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+            }
+                
         }
     }
 
