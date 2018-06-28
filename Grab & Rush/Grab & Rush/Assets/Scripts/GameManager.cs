@@ -118,16 +118,23 @@ public class GameManager : MonoBehaviour
     {
         switch (ID_Scene)
         {
+            case -1:
+                Application.Quit();
+                break;
             case 0:
                 GameState = Enum.GameState.MainMenu;
                 SceneManager.LoadScene("MenuPrincipale");
                 break;
 
             case 1:
-                GameState = Enum.GameState.GamePhaseP1Run;
-                SceneManager.LoadScene("Jeu");
+                
+                SceneManager.LoadScene("SelectMenu");
                 break;
             case 2:
+                GameState = Enum.GameState.GamePhaseP1Run;
+                SceneManager.LoadScene("Grab&Rush");
+                break;
+            case 3:
                 GameState = Enum.GameState.Credits;
                 SceneManager.LoadScene("Crédits");
                 break;
