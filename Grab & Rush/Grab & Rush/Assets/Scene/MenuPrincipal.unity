@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 274199689}
   - component: {fileID: 274199688}
   - component: {fileID: 274199687}
-  - component: {fileID: 274199690}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -190,7 +189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 274199690}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -236,17 +235,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 274199685}
---- !u!114 &274199690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 274199685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55177b90eea7a8048b8eb873861d0a05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &486008301
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +401,6 @@ GameObject:
   - component: {fileID: 694574034}
   - component: {fileID: 694574033}
   - component: {fileID: 694574032}
-  - component: {fileID: 694574035}
   m_Layer: 5
   m_Name: Jouer
   m_TagString: Untagged
@@ -479,7 +466,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 694574035}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -525,17 +512,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 694574030}
---- !u!114 &694574035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 694574030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2107f5d2ea9dfcc43b91e0ebda01aebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1166478597
 GameObject:
   m_ObjectHideFlags: 0
