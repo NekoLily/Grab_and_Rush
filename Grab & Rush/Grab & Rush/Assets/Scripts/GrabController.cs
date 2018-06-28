@@ -10,10 +10,11 @@ public class GrabController : MonoBehaviour {
     public float x, y, GrabberYInit; //input x, input y, Distance initiale du DistanceJoint2D
     public bool down, up, isdown, isup; //Baisse, Monte, Est en bas, Est en haut
     public Rigidbody2D CabinRigidBody; //RigidBody de la cabine, sert au deplacement lateral
+    public Animator GrabAnim;
 	// Use this for initialization
 	void Start () {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
-        
+        GrabAnim = Grabber.GetComponent<Animator>();
         CabinRigidBody = Cabin.GetComponent<Rigidbody2D>();
         GrabberYInit = Grabber.GetComponent<DistanceJoint2D>().distance;
         isup = true;
@@ -72,10 +73,14 @@ public class GrabController : MonoBehaviour {
         if (down && isup)
         {
             StartCoroutine(GoDown());
+            isup = false;
+            GrabAnim.SetTrigger("Open");
         }
         else if (up && isdown)
         {
             StartCoroutine(GoUp());
+            isdown = false;
+            GrabAnim.SetTrigger("Close");
         }
         else if (Mathf.Abs(x) > 0.7)
         {
@@ -98,13 +103,14 @@ public class GrabController : MonoBehaviour {
             while (Grabber.GetComponent<DistanceJoint2D>().distance <= GrabberYInit + 2.5f)
             {
 
-                Grabber.GetComponent<DistanceJoint2D>().distance += 0.02f;
+                Grabber.GetComponent<DistanceJoint2D>().distance += 0.2f;
                 yield return new WaitForSeconds(0.01f);
 
             }
             isdown = true;
-            isup = false;
-            yield return new WaitForSeconds(1f);
+            
+            yield return new WaitForSeconds(1.5f);
+            GrabAnim.SetTrigger("Close");
             Trigger.enabled = false;
 
         }
@@ -123,11 +129,11 @@ public class GrabController : MonoBehaviour {
         while (Grabber.GetComponent<DistanceJoint2D>().distance >= GrabberYInit)
         {
 
-            Grabber.GetComponent<DistanceJoint2D>().distance -= 0.02f;
+            Grabber.GetComponent<DistanceJoint2D>().distance -= 0.1f;
             yield return new WaitForSeconds(0.01f);
         }
         isup = true;
-        isdown = false;
+        
         //StopCoroutine(GoUp());
     }
 }

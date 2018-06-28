@@ -23,7 +23,7 @@ public class CountDown : MonoBehaviour
             {
                 StartCoroutine("LoseTime");
             }
-            countdown.text = ("" + timeLeft);
+            countdown.text = (timeLeft.ToString());
             if (timeLeft == 0)
             {
                 StopCoroutine("LoseTime");

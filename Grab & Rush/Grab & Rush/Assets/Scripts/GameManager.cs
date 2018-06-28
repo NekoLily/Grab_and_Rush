@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public bool RunnerWin = true;
     public bool P1Run = true;
     public bool ScoreAdded = false;
-    public GameObject Runner;
     // Use this for initialization
     private void Awake()
     {
@@ -43,30 +42,14 @@ public class GameManager : MonoBehaviour
             case Enum.GameState.GamePhaseP1Run: //Phase de jeu, le joueur 1 court
                 P1Run = true;
                 ScoreAdded = false;
-                try
-                {
-                    Runner = GameObject.Find("Runner");
-                }
-                catch (System.NullReferenceException ex)
-                {
-                    RunnerWin = false;
-                    GameState = Enum.GameState.EndRound;
-                }
+                
 
 
                 break;
             case Enum.GameState.GamePhaseP2Run: //Phase de jeu, le joueur 2 court
                 P1Run = false;
                 ScoreAdded = false;
-                try
-                {
-                    Runner = GameObject.Find("Runner");
-                }
-                catch (System.NullReferenceException ex)
-                {
-                    RunnerWin = false;
-                    GameState = Enum.GameState.EndRound;
-                }
+                
                 break;
             case Enum.GameState.MenuPause: //Menu pause en jeu
                 break;

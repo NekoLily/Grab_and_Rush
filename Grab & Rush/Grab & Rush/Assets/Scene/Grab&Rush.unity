@@ -449,6 +449,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e49ef6d2aa84248a3751cbf871b833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &539749049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 539749051}
+  - component: {fileID: 539749050}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &539749050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 539749049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc80d5884ba5144ea52c43993a96ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameState: 0
+  ScoreP1: 0
+  ScoreP2: 0
+  ScoreLimit: 0
+  RunnerWin: 1
+  P1Run: 1
+  ScoreAdded: 0
+--- !u!4 &539749051
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 539749049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.002923, y: 1.0179303, z: -0.06359171}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &561489669
 Prefab:
   m_ObjectHideFlags: 0
@@ -589,6 +636,7 @@ GameObject:
   - component: {fileID: 767318239}
   - component: {fileID: 767318241}
   - component: {fileID: 767318240}
+  - component: {fileID: 767318242}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -653,6 +701,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 767318238}
+--- !u!114 &767318242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 767318238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fe40061f6544849afa3ad543440943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLeft: 30
+  countdown: {fileID: 767318240}
 --- !u!1001 &807623944
 Prefab:
   m_ObjectHideFlags: 0
@@ -706,6 +767,19 @@ Prefab:
         type: 2}
       propertyPath: m_Anchor.y
       value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 95881798654633744, guid: ceea6a0363bc6204da6476087bfce690,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816328947329530, guid: ceea6a0363bc6204da6476087bfce690, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.922
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816328947329530, guid: ceea6a0363bc6204da6476087bfce690, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ceea6a0363bc6204da6476087bfce690, type: 2}
@@ -864,7 +938,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 54a06a858dd0606459102fcc4cc9d30f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -971,7 +1045,6 @@ MonoBehaviour:
   RunnerWin: 1
   P1Run: 1
   ScoreAdded: 0
-  Runner: {fileID: 0}
 --- !u!4 &1016648095
 Transform:
   m_ObjectHideFlags: 0
@@ -1286,7 +1359,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: aa6c85b629a3bff4eb9746e3a9aa287f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
