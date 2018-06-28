@@ -173,12 +173,22 @@ public class GameManager : MonoBehaviour
         {
             Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
             Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[1, 1]));
+
+            GameObject TMP = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Data[1, 0]));
+            TMP.transform.localScale -= TMP.transform.localScale * 0.5f;
+            TMP.transform.parent = Hook.transform.Find("Cabin");
+            TMP.transform.position = GameObject.Find("Playerpos").transform.position;
             GameState = Enum.GameState.GamePhaseP1Run;
         }
         else
         {
             Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[1, 0]));
             Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[0, 1]));
+
+            GameObject TMP = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Data[0, 0]));
+            TMP.transform.localScale -= TMP.transform.localScale * 0.5f;
+            TMP.transform.parent = Hook.transform.Find("Cabin");
+            TMP.transform.position = GameObject.Find("Playerpos").transform.position;
             GameState = Enum.GameState.GamePhaseP2Run;
         }
 
