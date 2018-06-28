@@ -51,11 +51,17 @@ TagManager:
   - name: BackGround2
     uniqueID: 2187650137
     locked: 0
+  - name: Player
+    uniqueID: 860649935
+    locked: 0
   - name: Skin
     uniqueID: 553819187
     locked: 0
   - name: Platform
     uniqueID: 4138728227
+    locked: 0
+  - name: Decor
+    uniqueID: 300175559
     locked: 0
   - name: UI
     uniqueID: 1771492195

@@ -15,5 +15,8 @@ EditorBuildSettings:
     path: Assets/Scene/Grab&Rush.unity
     guid: 8c76fcf0be32ac842bb33163daab154c
   - enabled: 1
+    path: Assets/Scene/Score.unity
+    guid: 8114ce06b1e50f342b6117c6723feeb7
+  - enabled: 1
     path: Assets/Scene/Credits.unity
     guid: 54f815657c9273141b212f230e5e3986

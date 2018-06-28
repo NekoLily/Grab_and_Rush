@@ -39,8 +39,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameState: 0
-  Score: 0
+  ScoreP1: 0
+  ScoreP2: 0
   ScoreLimit: 0
+  RunnerWin: 1
+  P1Run: 0
+  ScoreAdded: 0
+  ScoreText: {fileID: 0}
+  EndRound: {fileID: 0}
 --- !u!224 &224281472072663744
 RectTransform:
   m_ObjectHideFlags: 1
