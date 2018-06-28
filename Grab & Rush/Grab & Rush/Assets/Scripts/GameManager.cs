@@ -47,12 +47,12 @@ public class GameManager : MonoBehaviour
                 {
                     Runner = GameObject.Find("Runner");
                 }
-                catch(System.NullReferenceException ex)
+                catch (System.NullReferenceException ex)
                 {
                     RunnerWin = false;
                     GameState = Enum.GameState.EndRound;
                 }
-                
+
 
                 break;
             case Enum.GameState.GamePhaseP2Run: //Phase de jeu, le joueur 2 court
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             case Enum.GameState.MenuPause: //Menu pause en jeu
                 break;
             case Enum.GameState.EndRound: //Fin du round, phase de transition et d'ajout au score
-                if(ScoreAdded == false)
+                if (ScoreAdded == false)
                 {
                     if (RunnerWin)
                     {
@@ -102,10 +102,10 @@ public class GameManager : MonoBehaviour
 
                     ScoreAdded = true;
                 }
-                
+
                 break;
             case Enum.GameState.Victory://Fin de la partie, afficher le score et recommencer/arreter de jouer
-                
+
                 break;
             case Enum.GameState.Credits: //Generique
                 break;
@@ -125,9 +125,7 @@ public class GameManager : MonoBehaviour
                 GameState = Enum.GameState.MainMenu;
                 SceneManager.LoadScene("MenuPrincipale");
                 break;
-
             case 1:
-                
                 SceneManager.LoadScene("SelectMenu");
                 break;
             case 2:
