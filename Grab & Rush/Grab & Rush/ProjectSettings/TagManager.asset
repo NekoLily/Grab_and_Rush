@@ -44,6 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround1
+    uniqueID: 425646435
+    locked: 0
+  - name: BackGround2
+    uniqueID: 2187650137
+    locked: 0
+  - name: Skin
+    uniqueID: 553819187
+    locked: 0
   - name: Platform
     uniqueID: 4138728227
+    locked: 0
+  - name: UI
+    uniqueID: 1771492195
     locked: 0

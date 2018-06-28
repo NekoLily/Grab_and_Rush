@@ -190,7 +190,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1079824680}
+      - m_Target: {fileID: 114285876339720844, guid: 5d112c9b94541cb4fa9b5723c0b15abb,
+          type: 2}
         m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
@@ -479,7 +480,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1079824680}
+      - m_Target: {fileID: 114285876339720844, guid: 5d112c9b94541cb4fa9b5723c0b15abb,
+          type: 2}
         m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
@@ -636,12 +638,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d112c9b94541cb4fa9b5723c0b15abb, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1079824680 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114285876339720844, guid: 5d112c9b94541cb4fa9b5723c0b15abb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1079824679}
-  m_Script: {fileID: 11500000, guid: 2dc80d5884ba5144ea52c43993a96ac7, type: 3}
 --- !u!1 &1166478597
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,12 +787,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 114285876339720844, guid: 5d112c9b94541cb4fa9b5723c0b15abb,
+          type: 2}
+        m_MethodName: LoadScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

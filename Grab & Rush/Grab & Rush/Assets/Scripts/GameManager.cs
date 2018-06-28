@@ -123,9 +123,11 @@ public class GameManager : MonoBehaviour
                 break;
             case 0:
                 GameState = Enum.GameState.MainMenu;
-                SceneManager.LoadScene("MenuPrincipale");
+                Data = new float[2, 2] { { 1, 1 }, { 1, 1 } };
+                SceneManager.LoadScene("MenuPrincipal");
                 break;
             case 1:
+                Data = new float[2, 2] { { 1, 1 }, { 1, 1 } };
                 SceneManager.LoadScene("SelectMenu");
                 break;
             case 2:
@@ -134,7 +136,7 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 GameState = Enum.GameState.Credits;
-                SceneManager.LoadScene("Crédits");
+                SceneManager.LoadScene("Credits");
                 break;
         }
     }

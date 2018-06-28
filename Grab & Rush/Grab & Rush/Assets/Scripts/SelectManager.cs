@@ -7,6 +7,9 @@ public class SelectManager : MonoBehaviour
     GameManager _GameManager;
     public int Max_Skin = 8;
 
+    public GameObject Arrow_P1;
+    public GameObject Arrow_P2;
+
     GameObject P1_Player;
     GameObject P2_Player;
 
@@ -31,21 +34,22 @@ public class SelectManager : MonoBehaviour
     private bool Selected_Hook_Skin_P1 = false;
     private bool Selected_Hook_Skin_P2 = false;
 
+    private bool P1_IsReady = false;
+    private bool P2_IsReady = false;
+
     void Start()
     {
         _GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        P1_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P1), new Vector2(-5, 0), transform.rotation);
-        P2_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P2), new Vector2(5, 0), transform.rotation);
+        P1_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P1), new Vector2(-2.5f, 1.5f), transform.rotation);
+        P2_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P2), new Vector2(2.5f, 1.5f), transform.rotation);
 
-        P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-5, 3), transform.rotation);
-        P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(5, 3), transform.rotation);
+        P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-2.3f, -2f), transform.rotation);
+        P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(2.3f, -2f), transform.rotation);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_GameManager.Data[0, 0] + " " + _GameManager.Data[0,1]);
-
         if ((Axis_Value_P1 = Input.GetAxisRaw("HorizontalP1")) != 0)
         {
             if (H_Axe_P1 == false)
@@ -135,40 +139,43 @@ public class SelectManager : MonoBehaviour
 
         if (Selected_Player_Skin_P1)
         {
-            P1_Player.transform.position = new Vector2(-7, 3);
-            P1_Hook.transform.position = new Vector2(-5, 0);
+            Arrow_P1.transform.position = new Vector3(-2.4f, -2, 0);
         }
         else
         {
-            P1_Player.transform.position = new Vector2(-5, 0);
-            P1_Hook.transform.position = new Vector2(-5, 3);
+            Arrow_P1.transform.position = new Vector3(-2.4f, 1.5f, 0);
         }
         if (Selected_Hook_Skin_P1)
-            P1_Hook.transform.position = new Vector2(-5, 3);
+        {
+            Arrow_P1.transform.position = new Vector3(-2.4f, 10, 0);
+        }
         else if (Selected_Player_Skin_P1)
-            P1_Hook.transform.position = new Vector2(-5, 0);
+        {
+            Arrow_P1.transform.position = new Vector3(-2.4f, -2f, 0);
+        }
 
 
 
 
         if (Selected_Player_Skin_P2)
         {
-            P2_Player.transform.position = new Vector2(3, 3);
-            P2_Hook.transform.position = new Vector2(5, 0);
+            Arrow_P2.transform.position = new Vector3(2.4f, -2, 0);
         }
         else
         {
-            P2_Player.transform.position = new Vector2(5, 0);
-            P2_Hook.transform.position = new Vector2(5, 3);
+            Arrow_P2.transform.position = new Vector3(2.4f, 1.5f, 0);
+        }
+        if (Selected_Hook_Skin_P2)
+        {
+            Arrow_P2.transform.position = new Vector3(2.4f, 10, 0);
+        }
+        else if (Selected_Player_Skin_P2)
+        {
+            Arrow_P2.transform.position = new Vector3(2.4f, -2f, 0);
         }
 
-        if (Selected_Hook_Skin_P2)
-            P2_Hook.transform.position = new Vector2(5, 3);
-        else if (Selected_Player_Skin_P2)
-            P2_Hook.transform.position = new Vector2(5, 0);
 
-
-        //////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
 
     }
 
@@ -184,7 +191,7 @@ public class SelectManager : MonoBehaviour
                     Index_Player_P1 = 1;
                 else
                     Index_Player_P1 += Axis_Value_P1;
-                P1_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P1), new Vector2(-5, 0), transform.rotation);
+                P1_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P1), new Vector2(-2.5f, 1.5f), transform.rotation);
                 _GameManager.GetComponent<GameManager>().Data[0, 0] = Index_Player_P1;
                 break;
             case 2:
@@ -195,7 +202,7 @@ public class SelectManager : MonoBehaviour
                     Index_Player_P2 = 1;
                 else
                     Index_Player_P2 += Axis_Value_P2;
-                P2_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P2), new Vector2(5, 0), transform.rotation);
+                P2_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P2), new Vector2(2.5f, 1.5f), transform.rotation);
                 _GameManager.GetComponent<GameManager>().Data[1, 0] = Index_Player_P2;
                 break;
         }
@@ -213,7 +220,7 @@ public class SelectManager : MonoBehaviour
                     Index_Player_P1 = 1;
                 else
                     Index_Player_P1 += Axis_Value_P1;
-                P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-5, 0), transform.rotation);
+                P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-2.3f, -2), transform.rotation);
                 _GameManager.GetComponent<GameManager>().Data[0, 1] = Index_Player_P1;
                 break;
             case 2:
@@ -224,10 +231,18 @@ public class SelectManager : MonoBehaviour
                     Index_Player_P2 = 1;
                 else
                     Index_Player_P2 += Axis_Value_P2;
-                P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(5, 0), transform.rotation);
+                P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(2.3f, -2), transform.rotation);
                 _GameManager.GetComponent<GameManager>().Data[1, 1] = Index_Player_P2;
                 break;
         }
     }
 
+
+    public void StartGame()
+    {
+        if (Selected_Player_Skin_P1 && Selected_Player_Skin_P2 && Selected_Hook_Skin_P1 && Selected_Hook_Skin_P2)
+        {
+            _GameManager.LoadScene(2);
+        }
+    }
 }
