@@ -90,14 +90,14 @@ public class SelectManager : MonoBehaviour
         {
             if (V_Axe_P1 == false)
             {
-                if (Axis_Value_P1 > 0)
+                if (Axis_Value_P1 < 0)
                 {
                     if (Selected_Player_Skin_P1 == false)
                         Selected_Player_Skin_P1 = true;
                     else if (Selected_Hook_Skin_P1 == false)
                         Selected_Hook_Skin_P1 = true;
                 }
-                else if (Axis_Value_P1 < 0)
+                else if (Axis_Value_P1 > 0)
                 {
                     if (Selected_Hook_Skin_P1 == true)
                         Selected_Hook_Skin_P1 = false;
@@ -117,14 +117,14 @@ public class SelectManager : MonoBehaviour
         {
             if (V_Axe_P2 == false)
             {
-                if (Axis_Value_P2 > 0)
+                if (Axis_Value_P2 < 0)
                 {
                     if (Selected_Player_Skin_P2 == false)
                         Selected_Player_Skin_P2 = true;
                     else if (Selected_Hook_Skin_P2 == false)
                         Selected_Hook_Skin_P2 = true;
                 }
-                else if (Axis_Value_P2 < 0)
+                else if (Axis_Value_P2 > 0)
                 {
                     if (Selected_Hook_Skin_P2 == true)
                         Selected_Hook_Skin_P2 = false;
