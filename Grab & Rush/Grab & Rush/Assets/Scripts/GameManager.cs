@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     public bool P1Run = false;
     public bool ScoreAdded = false;
     public Text ScoreText;
+    public Text EndRound;
 
+    private bool EndRoundCRRunning = false;
     private Enum.GameState TMP;
     private GameObject Player;
     private GameObject CHENILLE;
@@ -97,42 +99,9 @@ public class GameManager : MonoBehaviour
             case Enum.GameState.MenuPause: //Menu pause en jeu
                 break;
             case Enum.GameState.EndRound: //Fin du round, phase de transition et d'ajout au score
-                DestroyObject(Hook);
-                DestroyObject(Player);
-                if (ScoreAdded == false)
-                {
-                    if (RunnerWin)
-                    {
-                        if (P1Run)
-                            ScoreP1 += 1;
-                        else
-                            ScoreP2 += 1;
-                    }
-                    else if (RunnerWin == false)
-                    {
-                        if (P1Run)
-                            ScoreP2 += 1;
-                        else
-                            ScoreP1 += 1;
-                    }
-
-                    if (ScoreP1 == ScoreLimit || ScoreP2 == ScoreLimit)
-                    {
-                        GameState = Enum.GameState.Victory;
-                    }
-                    else if (P1Run)
-                    {
-                        StartCoroutine("SpawnPlayer");
-                        //GameState = Enum.GameState.GamePhaseP2Run;
-                    }
-                    else if (P1Run == false)
-                    {
-                        StartCoroutine("SpawnPlayer");
-                        //GameState = Enum.GameState.GamePhaseP1Run;
-                    }
-
-                    ScoreAdded = true;
-                }
+                EndRound = GameObject.Find("EndRound").GetComponent<Text>();
+                if (EndRoundCRRunning == false)
+                    StartCoroutine(EndRoundCR());
 
                 break;
             case Enum.GameState.Victory://Fin de la partie, afficher le score et recommencer/arreter de jouer
@@ -218,5 +187,49 @@ public class GameManager : MonoBehaviour
         GameObject.Find("Menu").SetActive(false);
         GameState = TMP;
         Time.timeScale = 1f;
+    }
+
+    IEnumerator EndRoundCR()
+    {
+        EndRoundCRRunning = true;
+        DestroyObject(Hook);
+        DestroyObject(Player);
+        if (ScoreAdded == false)
+        {
+            if (RunnerWin)
+            {
+                if (P1Run)
+                    ScoreP1 += 1;
+                else
+                    ScoreP2 += 1;
+            }
+            else if (RunnerWin == false)
+            {
+                if (P1Run)
+                    ScoreP2 += 1;
+                else
+                    ScoreP1 += 1;
+            }
+            EndRound.text = ScoreP1.ToString() + " - " + ScoreP2.ToString();
+            yield return new WaitForSeconds(3f);
+            EndRound.text = "";
+            if (ScoreP1 == ScoreLimit || ScoreP2 == ScoreLimit)
+            {
+                GameState = Enum.GameState.Victory;
+            }
+            else if (P1Run)
+            {
+                StartCoroutine("SpawnPlayer");
+                //GameState = Enum.GameState.GamePhaseP2Run;
+            }
+            else if (P1Run == false)
+            {
+                StartCoroutine("SpawnPlayer");
+                //GameState = Enum.GameState.GamePhaseP1Run;
+            }
+
+            ScoreAdded = true;
+        }
+        EndRoundCRRunning = false;
     }
 }

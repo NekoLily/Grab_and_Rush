@@ -34,7 +34,7 @@ public class CountDown : MonoBehaviour
                 GM.GameState = Enum.GameState.EndRound;
             }
         }
-        else
+        else if(GM.GameState != Enum.GameState.MenuPause)
         {
             timeLeft = 30;
             CRRunning = false;
