@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool P1Run = false;
     public bool ScoreAdded = false;
 
+    private Enum.GameState TMP;
     private GameObject Player;
     private GameObject Hook;
     // Use this for initialization
@@ -36,6 +37,40 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "MainMenu":
+                    LoadScene(-1);
+                    break;
+
+                case "SelectMenu":
+                    LoadScene(0);
+                    break;
+
+                case "Credits":
+                    LoadScene(0);
+                    break;
+
+                case "Grab&Rush":                  
+                    if (GameState != Enum.GameState.MenuPause)
+                    {                    
+                        TMP = GameState;
+                        GameState = Enum.GameState.MenuPause;
+                        GameObject.Find("Canvas").gameObject.transform.Find("Menu").gameObject.SetActive(true);
+                        Time.timeScale = 0f;
+                    }
+                    else if (GameState == Enum.GameState.MenuPause)
+                    {
+                        GameObject.Find("Menu").SetActive(false);
+                        GameState = TMP;
+                        Time.timeScale = 1f;
+                    }
+                    break;
+            }
+
+        }
         switch (GameState) //Permet de gérer le jeu selon son état GameState
         {
             case Enum.GameState.MainMenu: //Menu principal
@@ -50,7 +85,7 @@ public class GameManager : MonoBehaviour
             case Enum.GameState.GamePhaseP2Run: //Phase de jeu, le joueur 2 court
                 P1Run = false;
                 ScoreAdded = false;
-                
+
                 break;
             case Enum.GameState.MenuPause: //Menu pause en jeu
                 break;
@@ -136,7 +171,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (P1Run == false)
         {
-            Player =Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
+            Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
             Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[1, 1]));
             GameState = Enum.GameState.GamePhaseP1Run;
         }
@@ -147,5 +182,12 @@ public class GameManager : MonoBehaviour
             GameState = Enum.GameState.GamePhaseP2Run;
         }
 
+    }
+
+    public void Resume()
+    {
+        GameObject.Find("Menu").SetActive(false);
+        GameState = TMP;
+        Time.timeScale = 1f;
     }
 }
