@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Enum {
 
-	public enum GameState {MainMenu,Credits,BallSelect,GamePhaseP1Run, GamePhaseP2Run, EndRound, Victory, MenuPause } //Différents GameState, utilisés dans le GameManager
+	public enum GameState {MainMenu,Credits,BallSelect,GamePhaseP1Run, GamePhaseP2Run, EndRound, Victory, MenuPause , Loading} //Différents GameState, utilisés dans le GameManager
 }

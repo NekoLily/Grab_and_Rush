@@ -5,6 +5,7 @@ using UnityEngine;
 public class OnTriggerGetPlayer : MonoBehaviour {
 
     public GameObject Player;
+    public GrabController GC;
     private void OnTriggerEnter2D(Collider2D PlayerCollider)
     {
         
@@ -15,8 +16,10 @@ public class OnTriggerGetPlayer : MonoBehaviour {
 
     private void Update()
     {
+        GC = GameObject.FindGameObjectWithTag("Machine").GetComponent<GrabController>();
         if(Player != null)
         {
+            GC.isup = true;
             Player.GetComponent<Transform>().position = this.gameObject.GetComponent<Transform>().position;
         }
     }

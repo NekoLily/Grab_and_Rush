@@ -38,7 +38,7 @@ public class CountDown : MonoBehaviour
         {
             timeLeft = 30;
             CRRunning = false;
-            //StopCoroutine("LoseTime");
+            StopCoroutine("LoseTime");
         }
     }
             

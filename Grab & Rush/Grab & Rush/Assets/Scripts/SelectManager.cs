@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class SelectManager : MonoBehaviour
 {
     GameManager _GameManager;
-    public int Max_Skin = 8;
+    public int Max_Player_Skin = 9;
+    public int Max_Hook_Skin = 4;
 
     public GameObject Arrow_P1;
     public GameObject Arrow_P2;
@@ -46,8 +47,8 @@ public class SelectManager : MonoBehaviour
         P1_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P1), new Vector2(-2.5f, 1.5f), transform.rotation);
         P2_Player = Instantiate(Resources.Load<GameObject>("Prefab/Player_Skin/Player_" + Index_Player_P2), new Vector2(2.5f, 1.5f), transform.rotation);
 
-        P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-2.3f, -2f), transform.rotation);
-        P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(2.3f, -2f), transform.rotation);
+        P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-2.3f, -1.5f), transform.rotation);
+        P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(2.3f, -1.5f), transform.rotation);
     }
 
     // Update is called once per frame
@@ -189,8 +190,8 @@ public class SelectManager : MonoBehaviour
             case 1:
                 DestroyObject(P1_Player);
                 if (Index_Player_P1 + Axis_Value_P1 < 1)
-                    Index_Player_P1 = Max_Skin;
-                else if (Index_Player_P1 + Axis_Value_P1 > 8)
+                    Index_Player_P1 = Max_Player_Skin;
+                else if (Index_Player_P1 + Axis_Value_P1 > Max_Player_Skin)
                     Index_Player_P1 = 1;
                 else
                     Index_Player_P1 += Axis_Value_P1;
@@ -200,8 +201,8 @@ public class SelectManager : MonoBehaviour
             case 2:
                 DestroyObject(P2_Player);
                 if (Index_Player_P2 + Axis_Value_P2 < 1)
-                    Index_Player_P2 = Max_Skin;
-                else if (Index_Player_P2 + Axis_Value_P2 > 8)
+                    Index_Player_P2 = Max_Player_Skin;
+                else if (Index_Player_P2 + Axis_Value_P2 > Max_Player_Skin)
                     Index_Player_P2 = 1;
                 else
                     Index_Player_P2 += Axis_Value_P2;
@@ -218,23 +219,23 @@ public class SelectManager : MonoBehaviour
             case 1:
                 DestroyObject(P1_Hook);
                 if (Index_Player_P1 + Axis_Value_P1 < 1)
-                    Index_Player_P1 = Max_Skin;
-                else if (Index_Player_P1 + Axis_Value_P1 > 8)
+                    Index_Player_P1 = Max_Hook_Skin;
+                else if (Index_Player_P1 + Axis_Value_P1 > Max_Hook_Skin)
                     Index_Player_P1 = 1;
                 else
                     Index_Player_P1 += Axis_Value_P1;
-                P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-2.3f, -2), transform.rotation);
+                P1_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P1), new Vector2(-2.3f, -1.5f), transform.rotation);
                 _GameManager.GetComponent<GameManager>().Data[0, 1] = Index_Player_P1;
                 break;
             case 2:
                 DestroyObject(P2_Hook);
                 if (Index_Player_P2 + Axis_Value_P2 < 1)
-                    Index_Player_P2 = Max_Skin;
-                else if (Index_Player_P2 + Axis_Value_P2 > 8)
+                    Index_Player_P2 = Max_Hook_Skin;
+                else if (Index_Player_P2 + Axis_Value_P2 > Max_Hook_Skin)
                     Index_Player_P2 = 1;
                 else
                     Index_Player_P2 += Axis_Value_P2;
-                P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(2.3f, -2), transform.rotation);
+                P2_Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook_Skin/Hook_" + Index_Player_P2), new Vector2(2.3f, -1.5f), transform.rotation);
                 _GameManager.GetComponent<GameManager>().Data[1, 1] = Index_Player_P2;
                 break;
         }
