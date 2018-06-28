@@ -9,6 +9,8 @@ public class DestroyPlayer : MonoBehaviour {
         if(collision.gameObject.tag == "Player")
         {
             Destroy(collision.gameObject);
+            GameObject.Find("GameManager").GetComponent<GameManager>().RunnerWin = false;
+            GameObject.Find("GameManager").GetComponent<GameManager>().GameState = Enum.GameState.EndRound;
         }
     }
 }
