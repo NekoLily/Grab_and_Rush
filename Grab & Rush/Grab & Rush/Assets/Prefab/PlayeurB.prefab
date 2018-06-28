@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114500859015671584}
   m_Layer: 0
   m_Name: PlayeurB
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +92,8 @@ MonoBehaviour:
   maxSpeed: 50
   jumpPower: 180
   Offset_Y: 0
+  Jump_Number: 2
+  GM: {fileID: 0}
 --- !u!212 &212135247313561756
 SpriteRenderer:
   m_ObjectHideFlags: 1
