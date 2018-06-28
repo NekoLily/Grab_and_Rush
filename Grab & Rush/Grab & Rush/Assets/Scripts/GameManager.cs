@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private Enum.GameState TMP;
     private GameObject Player;
+    private GameObject CHENILLE;
     private GameObject Hook;
     // Use this for initialization
     private void Awake()
@@ -171,6 +172,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (P1Run == false)
         {
+            foreach(GameObject GO in GameObject.FindGameObjectsWithTag("Ground"))
+            {
+                if(GO.GetComponent<SpriteRenderer>().isVisible == true)
+                {
+                    Destroy(GO);
+                }
+            }
+            CHENILLE = Instantiate(Resources.Load<GameObject>("Prefab/LACHENILLE"));
             Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
             Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[1, 1]));
 
@@ -182,6 +191,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            foreach (GameObject GO in GameObject.FindGameObjectsWithTag("Ground"))
+            {
+                if (GO.GetComponent<SpriteRenderer>().isVisible == true)
+                {
+                    Destroy(GO);
+                }
+            }
+            CHENILLE = Instantiate(Resources.Load<GameObject>("Prefab/LACHENILLE"));
             Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[1, 0]));
             Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[0, 1]));
 
