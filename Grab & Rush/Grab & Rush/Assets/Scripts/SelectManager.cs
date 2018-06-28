@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectManager : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class SelectManager : MonoBehaviour
 
     private bool P1_IsReady = false;
     private bool P2_IsReady = false;
+
+    public InputField ScoreInput;
 
     void Start()
     {
@@ -242,6 +245,10 @@ public class SelectManager : MonoBehaviour
     {
         if (Selected_Player_Skin_P1 && Selected_Player_Skin_P2 && Selected_Hook_Skin_P1 && Selected_Hook_Skin_P2)
         {
+            if (ScoreInput.text != "" && ScoreInput.text != null)
+                _GameManager.ScoreLimit = int.Parse(ScoreInput.text);
+            else
+                _GameManager.ScoreLimit = 5;
             _GameManager.LoadScene(2);
         }
     }
