@@ -11,6 +11,7 @@ public class GrabController : MonoBehaviour {
     public bool down, up, isdown, isup; //Baisse, Monte, Est en bas, Est en haut
     public Rigidbody2D CabinRigidBody; //RigidBody de la cabine, sert au deplacement lateral
     public Animator GrabAnim;
+    bool CRGoDownRunning = false;
 	// Use this for initialization
 	void Start () {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -69,17 +70,22 @@ public class GrabController : MonoBehaviour {
 
     void Move(float x, bool down, bool up)
     {
-     
-        if (down && isup)
+        if (down && isup && CRGoDownRunning == false)
         {
-            StartCoroutine(GoDown());
+            StopCoroutine(GoDown());
+            StopCoroutine(GoUp());
             isup = false;
+            StartCoroutine(GoDown());
+            
             GrabAnim.SetTrigger("Open");
         }
         else if (up && isdown)
         {
-            StartCoroutine(GoUp());
+            StopCoroutine(GoUp());
+            StopCoroutine(GoDown());
             isdown = false;
+            StartCoroutine(GoUp());
+            
             GrabAnim.SetTrigger("Close");
         }
         else if (Mathf.Abs(x) > 0.7)
@@ -97,6 +103,7 @@ public class GrabController : MonoBehaviour {
 
     IEnumerator GoDown()
     {
+        CRGoDownRunning = true;
         if(Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player == null)
         {
             Trigger.enabled = true;
@@ -116,12 +123,16 @@ public class GrabController : MonoBehaviour {
         }
         else
         {
+            isup = true;
             Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player.GetComponent<PlayerController>().enabled = true;
             Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player.GetComponent<Rigidbody2D>().simulated = true;
             Trigger.gameObject.GetComponent<OnTriggerGetPlayer>().Player = null;
+            yield return new WaitForSeconds(0.3f);
+            Debug.Log("isupCR:" + isup);
 
         }
         //StopCoroutine(GoDown());
+        CRGoDownRunning = false;
     }
 
     IEnumerator GoUp()
