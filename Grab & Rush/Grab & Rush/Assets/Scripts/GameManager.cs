@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int ScoreP1, ScoreP2, ScoreLimit; //Variable du score, limite du score fixée par les joueurs
     public float[,] Data = new float[2, 2] { { 1, 1 }, { 1, 1 } };
     public bool RunnerWin = true;
-    public bool P1Run = true;
+    public bool P1Run = false;
     public bool ScoreAdded = false;
     // Use this for initialization
     private void Awake()
@@ -114,13 +114,30 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("SelectMenu");
                 break;
             case 2:
-                GameState = Enum.GameState.GamePhaseP1Run;
+                GameState = Enum.GameState.Loading;
                 SceneManager.LoadScene("Grab&Rush");
+                StartCoroutine("SpawnPlayer");
                 break;
             case 3:
                 GameState = Enum.GameState.Credits;
                 SceneManager.LoadScene("Credits");
                 break;
         }
+    }
+
+    IEnumerator SpawnPlayer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (P1Run)
+        {
+            Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
+            GameState = Enum.GameState.GamePhaseP1Run;
+        }
+        else
+        {
+            Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[1, 0]));
+            GameState = Enum.GameState.GamePhaseP2Run;
+        }
+
     }
 }
