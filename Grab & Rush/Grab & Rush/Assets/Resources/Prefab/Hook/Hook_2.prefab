@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4634795796246402}
   - component: {fileID: 114148352114559602}
   m_Layer: 0
-  m_Name: GrabMachinePrefabCandy
+  m_Name: Hook_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

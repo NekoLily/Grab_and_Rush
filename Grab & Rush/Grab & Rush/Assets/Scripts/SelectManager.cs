@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class SelectManager : MonoBehaviour
 {
     GameManager _GameManager;
-    public int Max_Skin = 8;
+    public int Max_Player_Skin = 8;
+    public int Max_Hook_Skin = 3;
 
     public GameObject Arrow_P1;
     public GameObject Arrow_P2;
@@ -189,8 +190,8 @@ public class SelectManager : MonoBehaviour
             case 1:
                 DestroyObject(P1_Player);
                 if (Index_Player_P1 + Axis_Value_P1 < 1)
-                    Index_Player_P1 = Max_Skin;
-                else if (Index_Player_P1 + Axis_Value_P1 > 8)
+                    Index_Player_P1 = Max_Player_Skin;
+                else if (Index_Player_P1 + Axis_Value_P1 > Max_Player_Skin)
                     Index_Player_P1 = 1;
                 else
                     Index_Player_P1 += Axis_Value_P1;
@@ -200,8 +201,8 @@ public class SelectManager : MonoBehaviour
             case 2:
                 DestroyObject(P2_Player);
                 if (Index_Player_P2 + Axis_Value_P2 < 1)
-                    Index_Player_P2 = Max_Skin;
-                else if (Index_Player_P2 + Axis_Value_P2 > 8)
+                    Index_Player_P2 = Max_Player_Skin;
+                else if (Index_Player_P2 + Axis_Value_P2 > Max_Player_Skin)
                     Index_Player_P2 = 1;
                 else
                     Index_Player_P2 += Axis_Value_P2;
@@ -218,8 +219,8 @@ public class SelectManager : MonoBehaviour
             case 1:
                 DestroyObject(P1_Hook);
                 if (Index_Player_P1 + Axis_Value_P1 < 1)
-                    Index_Player_P1 = Max_Skin;
-                else if (Index_Player_P1 + Axis_Value_P1 > 8)
+                    Index_Player_P1 = Max_Hook_Skin;
+                else if (Index_Player_P1 + Axis_Value_P1 > Max_Hook_Skin)
                     Index_Player_P1 = 1;
                 else
                     Index_Player_P1 += Axis_Value_P1;
@@ -229,8 +230,8 @@ public class SelectManager : MonoBehaviour
             case 2:
                 DestroyObject(P2_Hook);
                 if (Index_Player_P2 + Axis_Value_P2 < 1)
-                    Index_Player_P2 = Max_Skin;
-                else if (Index_Player_P2 + Axis_Value_P2 > 8)
+                    Index_Player_P2 = Max_Hook_Skin;
+                else if (Index_Player_P2 + Axis_Value_P2 > Max_Hook_Skin)
                     Index_Player_P2 = 1;
                 else
                     Index_Player_P2 += Axis_Value_P2;

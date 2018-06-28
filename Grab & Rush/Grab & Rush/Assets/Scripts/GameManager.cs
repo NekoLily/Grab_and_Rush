@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public bool RunnerWin = true;
     public bool P1Run = false;
     public bool ScoreAdded = false;
+
+    private GameObject Player;
+    private GameObject Hook;
     // Use this for initialization
     private void Awake()
     {
@@ -42,8 +45,6 @@ public class GameManager : MonoBehaviour
             case Enum.GameState.GamePhaseP1Run: //Phase de jeu, le joueur 1 court
                 P1Run = true;
                 ScoreAdded = false;
-                
-
 
                 break;
             case Enum.GameState.GamePhaseP2Run: //Phase de jeu, le joueur 2 court
@@ -54,6 +55,8 @@ public class GameManager : MonoBehaviour
             case Enum.GameState.MenuPause: //Menu pause en jeu
                 break;
             case Enum.GameState.EndRound: //Fin du round, phase de transition et d'ajout au score
+                DestroyObject(Hook);
+                DestroyObject(Player);
                 if (ScoreAdded == false)
                 {
                     if (RunnerWin)
@@ -70,17 +73,20 @@ public class GameManager : MonoBehaviour
                         else
                             ScoreP1 += 1;
                     }
+
                     if (ScoreP1 == ScoreLimit || ScoreP2 == ScoreLimit)
                     {
                         GameState = Enum.GameState.Victory;
                     }
                     else if (P1Run)
                     {
-                        GameState = Enum.GameState.GamePhaseP2Run;
+                        StartCoroutine("SpawnPlayer");
+                        //GameState = Enum.GameState.GamePhaseP2Run;
                     }
                     else if (P1Run == false)
                     {
-                        GameState = Enum.GameState.GamePhaseP1Run;
+                        StartCoroutine("SpawnPlayer");
+                        //GameState = Enum.GameState.GamePhaseP1Run;
                     }
 
                     ScoreAdded = true;
@@ -128,14 +134,16 @@ public class GameManager : MonoBehaviour
     IEnumerator SpawnPlayer()
     {
         yield return new WaitForSeconds(0.5f);
-        if (P1Run)
+        if (P1Run == false)
         {
-            Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
+            Player =Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[0, 0]));
+            Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[1, 1]));
             GameState = Enum.GameState.GamePhaseP1Run;
         }
         else
         {
-            Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[1, 0]));
+            Player = Instantiate(Resources.Load<GameObject>("Prefab/Player/Player_" + Data[1, 0]));
+            Hook = Instantiate(Resources.Load<GameObject>("Prefab/Hook/Hook_" + Data[0, 1]));
             GameState = Enum.GameState.GamePhaseP2Run;
         }
 
