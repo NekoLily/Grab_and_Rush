@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public float[,] Data = new float[2, 2] { { 1, 1 }, { 1, 1 } };
     public bool RunnerWin = true;
     public bool P1Run = true;
+    public bool ScoreAdded = false;
+    public GameObject Runner;
     // Use this for initialization
     private void Awake()
     {
@@ -40,39 +42,67 @@ public class GameManager : MonoBehaviour
                 break;
             case Enum.GameState.GamePhaseP1Run: //Phase de jeu, le joueur 1 court
                 P1Run = true;
+                ScoreAdded = false;
+                try
+                {
+                    Runner = GameObject.Find("Runner");
+                }
+                catch(System.NullReferenceException ex)
+                {
+                    RunnerWin = false;
+                    GameState = Enum.GameState.EndRound;
+                }
+                
+
                 break;
             case Enum.GameState.GamePhaseP2Run: //Phase de jeu, le joueur 2 court
                 P1Run = false;
+                ScoreAdded = false;
+                try
+                {
+                    Runner = GameObject.Find("Runner");
+                }
+                catch (System.NullReferenceException ex)
+                {
+                    RunnerWin = false;
+                    GameState = Enum.GameState.EndRound;
+                }
                 break;
             case Enum.GameState.MenuPause: //Menu pause en jeu
                 break;
             case Enum.GameState.EndRound: //Fin du round, phase de transition et d'ajout au score
-                if (RunnerWin)
+                if(ScoreAdded == false)
                 {
-                    if (P1Run)
-                        ScoreP1 += 1;
-                    else
-                        ScoreP2 += 1;
+                    if (RunnerWin)
+                    {
+                        if (P1Run)
+                            ScoreP1 += 1;
+                        else
+                            ScoreP2 += 1;
+                    }
+                    else if (RunnerWin == false)
+                    {
+                        if (P1Run)
+                            ScoreP2 += 1;
+                        else
+                            ScoreP1 += 1;
+                    }
+                    if (ScoreP1 == ScoreLimit || ScoreP2 == ScoreLimit)
+                    {
+                        GameState = Enum.GameState.Victory;
+                    }
+                    else if (P1Run)
+                    {
+                        GameState = Enum.GameState.GamePhaseP2Run;
+                    }
+                    else if (P1Run == false)
+                    {
+                        GameState = Enum.GameState.GamePhaseP1Run;
+                    }
+
+                    ScoreAdded = true;
                 }
-                else if(RunnerWin == false)
-                {
-                    if (P1Run)
-                        ScoreP2 += 1;
-                    else
-                        ScoreP1 += 1;
-                }
-                if (ScoreP1 == ScoreLimit || ScoreP2 ==ScoreLimit)
-                {
-                    GameState = Enum.GameState.Victory;
-                }
-                else if (P1Run)
-                {
-                    GameState = Enum.GameState.GamePhaseP2Run;
-                }
-                else if (P1Run == false)
-                {
-                    GameState = Enum.GameState.GamePhaseP1Run;
-                }
+                
                 break;
             case Enum.GameState.Victory://Fin de la partie, afficher le score et recommencer/arreter de jouer
                 
