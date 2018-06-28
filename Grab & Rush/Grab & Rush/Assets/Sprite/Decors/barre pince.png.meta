@@ -43,10 +43,10 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.49606067, y: 0.7425906}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 145, y: 249, z: 148, w: 132}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -70,8 +70,16 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
-    physicsShape: []
+    outline:
+    - - {x: -6.6082916, y: -13.517014}
+      - {x: -7.2090454, y: 128.86197}
+      - {x: 4.205307, y: 129.4627}
+      - {x: 3.6045532, y: -14.117767}
+    physicsShape:
+    - - {x: -7.809799, y: -13.517029}
+      - {x: -7.809799, y: 128.86197}
+      - {x: 4.205307, y: 128.86197}
+      - {x: 4.205307, y: -13.517029}
   spritePackingTag: 
   userData: 
   assetBundleName: 
