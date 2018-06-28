@@ -12,16 +12,18 @@ public class CountDown : MonoBehaviour
     void Start()
     {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
-        StartCoroutine("LoseTime");
+       // StartCoroutine("LoseTime");
         Time.timeScale = 1;
     }
     void Update()
     {
+        Debug.Log(CRRunning);
         if(GM.GameState == Enum.GameState.GamePhaseP1Run || GM.GameState == Enum.GameState.GamePhaseP2Run)
         {
             if(CRRunning == false)
             {
                 StartCoroutine("LoseTime");
+                CRRunning = true;
             }
             countdown.text = (timeLeft.ToString());
             if (timeLeft == 0)
@@ -35,7 +37,8 @@ public class CountDown : MonoBehaviour
         else
         {
             timeLeft = 30;
-            StopCoroutine("LoseTime");
+            CRRunning = false;
+            //StopCoroutine("LoseTime");
         }
     }
             
@@ -45,8 +48,16 @@ public class CountDown : MonoBehaviour
         CRRunning = true;
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            Debug.Log("GoesThere");
+            yield return new WaitForSeconds(1f);
             timeLeft--;
+            if(timeLeft == 0)
+            {
+                CRRunning = false;
+                StopCoroutine(LoseTime());
+                break;
+            }
+            
         }
     }
 }

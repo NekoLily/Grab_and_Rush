@@ -20,11 +20,11 @@ public class PlatformSpawn : MonoBehaviour {
         
 	}
  
-    void Spawn()
+    public void Spawn()
     {
-        Instantiate(PlatformPrefab[Random.Range(0, PlatformPrefab.GetLength(0))], transform.position, Quaternion.identity);
+        Instantiate(PlatformPrefab[Random.Range(0, PlatformPrefab.GetLength(0))], new Vector3(Random.Range(transform.position.x-2, transform.position.x+4f), Random.Range(transform.position.y, transform.position.y-2), transform.position.z), Quaternion.identity);
         
-        Invoke("Spawn", Random.Range(spawnMin, spawnMax));
+        //Invoke("Spawn", Random.Range(spawnMin, spawnMax));
 
     }
 
